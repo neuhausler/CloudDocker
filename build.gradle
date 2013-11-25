@@ -1,0 +1,25 @@
+apply plugin: 'war'
+apply plugin: 'jetty'
+
+httpPort= 9090
+
+test.dependsOn 'cleanTest'
+
+repositories {
+   flatDir { dirs "WebContent/WEB-INF/lib" }
+}
+
+dependencies {
+	compile ':asm:3.1'
+	compile ':jersey-bundle:1.17'
+	compile ':servlet-api:2.5'
+	
+	testCompile 'junit:junit:4.8.2'
+}
+
+
+war {
+    from 'WebContent'
+}
+
+
