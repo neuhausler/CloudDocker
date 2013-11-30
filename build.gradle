@@ -12,6 +12,7 @@ repositories {
 dependencies {
 	compile ':asm:3.1'
 	compile ':jersey-bundle:1.17'
+	compile ':json-smart:1.1.1'
 	compile ':servlet-api:2.5'
 	
 	testCompile 'junit:junit:4.8.2'

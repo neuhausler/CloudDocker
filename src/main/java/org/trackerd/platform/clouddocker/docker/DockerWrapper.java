@@ -5,7 +5,8 @@ import java.net.*;
 
 import javax.xml.stream.*;
 
-import org.json.*;
+import net.minidev.json.*;
+
 import org.trackerd.platform.clouddocker.config.*;
 
 
@@ -34,7 +35,7 @@ public class DockerWrapper
 	        	return new JSONArray();
 
 	        InputStreamReader reader= new InputStreamReader(connection.getInputStream(), "UTF-8");
-	        result= new JSONArray(new JSONTokener(reader));
+	        result= (JSONArray)JSONValue.parse(reader);
 	        reader.close();
 
 	        connection.disconnect();
@@ -46,9 +47,6 @@ public class DockerWrapper
 		{
 			e.printStackTrace();
 		} catch(FactoryConfigurationError e)
-		{
-			e.printStackTrace();
-		} catch(JSONException e)
 		{
 			e.printStackTrace();
 		}
