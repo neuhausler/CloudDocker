@@ -17,6 +17,11 @@ public class DockerWrapper
 		return execGetReturnArray("/images/json");
 	}
 
+	public static Object listContainers()
+	{
+		return execGetReturnArray("/containers/json");
+	}
+
 	private static JSONArray execGetReturnArray(String command)
 	{
 		JSONArray result= null;
