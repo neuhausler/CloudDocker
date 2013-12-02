@@ -29,12 +29,6 @@ public class DockerWrapper
 		System.out.println(result);
 	}
 
-	public static void run(String tagName, int port)
-	{
-		// TODO Auto-generated method stub
-		
-	}
-
 	private static JSONArray execGetReturnArray(String command)
 	{
 		JSONArray result= null;

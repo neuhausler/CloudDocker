@@ -4,6 +4,6 @@ public class TomcatBuilderConfig
 {
 	public String   username= null;
 	public String   password= null;
-	public int      port    = 8080;
+	public String   tag     = null;
 	public String[] warFiles= null;
 }

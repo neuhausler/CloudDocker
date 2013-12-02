@@ -4,7 +4,6 @@ import java.io.*;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
-import javax.ws.rs.core.Response.*;
 
 import org.trackerd.platform.clouddocker.builder.tomcat.*;
 
@@ -14,7 +13,7 @@ import net.minidev.json.*;
 public class BuilderHandler
 {
 	// Json Example
-	// {"username":"admin","password":"admin","port":8080,"warFiles":["test.war"]}
+	// {"username":"admin","password":"admin","tag":"my/test", warFiles":["test.war"]}
 	//
 	@POST
 	@Path("/tomcat")
@@ -34,23 +33,22 @@ public class BuilderHandler
 		if (config.isEmpty()
 			|| config.containsKey("username") == false
 			|| config.containsKey("password") == false
-			|| config.containsKey("port")     == false
 			|| config.containsKey("warFiles") == false
 			|| config.get("warFiles") instanceof JSONArray == false) throw new WebApplicationException(Response.Status.BAD_REQUEST);
 
 		TomcatBuilderConfig builderConfig= new TomcatBuilderConfig();
 		builderConfig.username= (String) config.get("username");
 		builderConfig.password= (String) config.get("password");
-		builderConfig.port    = (Integer)config.get("port");
+		builderConfig.tag     = (String) config.get("tag");
 		
 		JSONArray warFiles= (JSONArray)config.get("warFiles");
 		builderConfig.warFiles= warFiles.toArray(new String[warFiles.size()]);
 
-		String id= null;
+		String tag= null;
 		
 		try
 		{
-			id= TomcatBuilder.buildAndRun(builderConfig);
+			tag= TomcatBuilder.build(builderConfig);
 
 		} catch(Exception e)
 		{
@@ -59,7 +57,7 @@ public class BuilderHandler
 		}
 
 		JSONObject result= new JSONObject();
-		result.put("id", id);
+		result.put("tag", tag);
 		
 	    Response.ResponseBuilder response= Response.ok(result.toJSONString(), MediaType.APPLICATION_JSON_TYPE);
 		return response.build();

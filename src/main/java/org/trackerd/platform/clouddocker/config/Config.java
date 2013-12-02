@@ -6,6 +6,8 @@ import java.util.*;
 public class Config
 {
 	private String dockerSocket= null;
+	private String baseImage= null;
+	private String urlForWarLocation= null;
 
 	private static Config config= null;
 	
@@ -32,7 +34,9 @@ public class Config
 		properties.load(inputStream);
 		inputStream.close();
 
-		dockerSocket= properties.getProperty("dockerSocket");
+		dockerSocket     = properties.getProperty("dockerSocket");
+		baseImage        = properties.getProperty("baseImage");
+		urlForWarLocation= properties.getProperty("urlForWarLocation");
 		
 	}
 
@@ -42,5 +46,14 @@ public class Config
 		return dockerSocket;
 	}
 
-
+	public String getBaseImage()
+	{
+		return baseImage;
+	}
+	
+	public String getUrlForWarLocation()
+	{
+		return urlForWarLocation;
+	}
+	
 }
