@@ -62,13 +62,13 @@ public class TomcatBuilder
 
 	private static void archiveFile(String tempDirPath, String filename, ArchiveOutputStream archiveOutput) throws IOException
 	{
-		File originalFile= new File(tempDirPath+'/'+filename);
-		File tar_input_file= new File(filename);
-        TarArchiveEntry tar_file= new TarArchiveEntry(tar_input_file);
-        tar_file.setSize(originalFile.length());
-        archiveOutput.putArchiveEntry(tar_file);
-        copy(originalFile, archiveOutput);
-        archiveOutput.closeArchiveEntry();
+		File originalFile= new File(tempDirPath + '/' + filename);
+		File tarInputFile= new File(filename);
+		TarArchiveEntry tarFile= new TarArchiveEntry(tarInputFile);
+		tarFile.setSize(originalFile.length());
+		archiveOutput.putArchiveEntry(tarFile);
+		copy(originalFile, archiveOutput);
+		archiveOutput.closeArchiveEntry();
 	}
 
 	private static void createDockerFile(String tempDirPath, TomcatBuilderConfig builderConfig) throws IOException
