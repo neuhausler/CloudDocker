@@ -2,4 +2,6 @@
 
 ## Overview
 
-Generates Docker Containers on demand
+Generates Docker Images on demand.
+
+![image](https://github.com/neuhausler/CloudDocker/blob/master/CloudDocker.jpg?raw=true)
